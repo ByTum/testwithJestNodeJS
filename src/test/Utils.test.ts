@@ -13,15 +13,35 @@ describe('Utils Test Suite', () => {
       console.log('Setup');
     });
 
-    afterEach(() => {
-      // clearing mock
-      console.log('Teardown');
-    });
-
     it('Should return correct upperCase', () => {
       const actual = sut.toUpperCase('abc');
       expect(actual).toBe('ABC');
       console.log('actual');
+    });
+
+    it('Should throw error on invalid agrument - function', () => {
+      function expectError() {
+        const actual = sut.toUpperCase('');
+      }
+      expect(expectError).toThrow();
+      // expect(expectError).toThrowError(); toThrowError() deprecated 24/07/2024
+    });
+
+    it('Should throw error on invalid agrument - arrow function', () => {
+      expect(() => {
+        sut.toUpperCase('');
+      }).toThrow('Invalid argument!');
+    });
+
+    it.only('Should throw error on invalid agrument - try catch block', (done) => {
+      try {
+        sut.toUpperCase('');
+        done();
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty('message', 'Invalid argument!');
+        done();
+      }
     });
   });
 
@@ -37,7 +57,7 @@ describe('Utils Test Suite', () => {
     expect(actual).toBe(expected);
   });
 
-  describe.only('ToUpperCase example', () => {
+  describe('ToUpperCase example', () => {
     it.each([
       { input: 'abc', expected: 'ABC' },
       { input: 'My-String', expected: 'MY-STRING' },
