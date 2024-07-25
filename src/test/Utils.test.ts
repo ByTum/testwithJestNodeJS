@@ -20,10 +20,9 @@ describe('Utils Test Suite', () => {
 
     // it.todo('test long string');
 
-    it('Should return correct upperCase', () => {
+    it.only('Should return correct upperCase', () => {
       const actual = sut.toUpperCase('abc');
       expect(actual).toBe('ABC');
-      console.log('actual');
     });
 
     it('Should throw error on invalid agrument - function', () => {
