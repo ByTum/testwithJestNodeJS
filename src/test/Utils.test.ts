@@ -3,6 +3,11 @@
 // 2. act
 // 3. assert
 
+// test properties
+// only,skip,todo,concurrent
+// test aliases
+// it, test, xit mean it.skip, fit mean it.only
+
 import { getStringInfo, StringUtils, toUpperCase } from '../app/Utils';
 describe('Utils Test Suite', () => {
   describe.only('StringUtils test', () => {
@@ -12,6 +17,8 @@ describe('Utils Test Suite', () => {
       sut = new StringUtils();
       console.log('Setup');
     });
+
+    // it.todo('test long string');
 
     it('Should return correct upperCase', () => {
       const actual = sut.toUpperCase('abc');
@@ -23,7 +30,7 @@ describe('Utils Test Suite', () => {
       function expectError() {
         const actual = sut.toUpperCase('');
       }
-      expect(expectError).toThrow();
+      expect(expectError).toThrow('Invalid argument!');
       // expect(expectError).toThrowError(); toThrowError() deprecated 24/07/2024
     });
 
@@ -33,7 +40,7 @@ describe('Utils Test Suite', () => {
       }).toThrow('Invalid argument!');
     });
 
-    it.only('Should throw error on invalid agrument - try catch block', (done) => {
+    it('Should throw error on invalid agrument - try catch block', (done) => {
       try {
         sut.toUpperCase('');
         done();
