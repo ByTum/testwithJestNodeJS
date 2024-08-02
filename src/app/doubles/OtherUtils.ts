@@ -8,10 +8,12 @@ export type stringInfo = {
 
 type LoggerServiceCallBack = (arg: string) => void;
 
+// Stubs
 export function calculateComplexity(stringInfo: stringInfo) {
   return Object.keys(stringInfo.extraInfo).length * stringInfo.length;
 }
 
+// Fakes
 export function toUpperCaseWithCb(
   arg: string,
   callBack: LoggerServiceCallBack
